@@ -23,7 +23,7 @@
 <br/>
 <div>
     <h3 class="text">lub, jeśli nie masz konta:</h3><br/>
-    <a href="/register" class="button">zarejetruj się</a>
+    <a href="/user/register" class="button">zarejetruj się</a>
 </div>
 </body>
 </html>
