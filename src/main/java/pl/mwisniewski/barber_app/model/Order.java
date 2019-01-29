@@ -7,7 +7,7 @@ import java.util.Objects;
 @Entity
 @Table(name = "orders")
 @Inheritance(strategy = InheritanceType.JOINED)
-public class Order {
+public abstract class Order {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

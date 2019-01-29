@@ -31,7 +31,7 @@ public class User {
 
 
     @Column(nullable = false)
-    @Size(min = 8, max = 20)
+    @Size(min = 5)
     @NotNull
     private String password;
 
