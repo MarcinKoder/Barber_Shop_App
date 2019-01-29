@@ -14,13 +14,13 @@ import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/user")
-public class UserRegistrationController {
+public class UserController {
 
     private UserRepository userRepository;
     private BCryptPasswordEncoder passwordEncoder;
     private UserDto userDto;
 
-    public UserRegistrationController(UserRepository userRepository, BCryptPasswordEncoder passwordEncoder, UserDto userDto) {
+    public UserController(UserRepository userRepository, BCryptPasswordEncoder passwordEncoder, UserDto userDto) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.userDto = userDto;
