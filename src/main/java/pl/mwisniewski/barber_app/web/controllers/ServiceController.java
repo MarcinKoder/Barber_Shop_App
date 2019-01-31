@@ -13,7 +13,7 @@ import pl.mwisniewski.barber_app.repositories.ServiceRepository;
 import javax.validation.Valid;
 
 @Controller
-@RequestMapping("/admin/services")
+@RequestMapping
 public class ServiceController {
     private ServiceRepository serviceRepository;
 
@@ -27,13 +27,19 @@ public class ServiceController {
         return "all-services";
     }
 
-    @GetMapping("/add")
+    @GetMapping("/allservices")
+    public String getListOfServices(Model model) {
+        model.addAttribute("services", serviceRepository.findAll());
+        return "all-services";
+    }
+
+    @GetMapping("/admin/services/add")
     public String prepareAddServiceForm(Model model) {
         model.addAttribute("service", new Service());
         return "service-add-edit-form";
     }
 
-    @PostMapping("/add")
+    @PostMapping("/admin/services/add")
     public String saveServicer(@Valid Service service, BindingResult result) {
         if (result.hasErrors()) {
             return "service-add-edit-form";
@@ -44,7 +50,7 @@ public class ServiceController {
         return "redirect:/admin/services";
     }
 
-    @GetMapping("/update/{id:[1-9][0-9]*}")
+    @GetMapping("/admin/services/update/{id:[1-9][0-9]*}")
     public String prepareServiceToEdit(@PathVariable Long id, Model model) {
         Service service = serviceRepository.findById(id).get();
         if (service.getId() == null) {
@@ -54,7 +60,7 @@ public class ServiceController {
         return "service-add-edit-form";
     }
 
-    @PostMapping("/update/{id:[1-9][0-9]*}")
+    @PostMapping("/admin/services/update/{id:[1-9][0-9]*}")
     public String editService(@Valid Service service, BindingResult result) {
         if (result.hasErrors()) {
             return "service-add-edit-form";
