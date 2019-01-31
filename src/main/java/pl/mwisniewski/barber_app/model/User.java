@@ -29,15 +29,10 @@ public class User {
     @NotNull
     private String email;
 
-
     @Column(nullable = false)
     @Size(min = 5)
     @NotNull
     private String password;
-
-    @ElementCollection(targetClass=UserRole.class)
-    @Enumerated(EnumType.STRING)
-    private List<UserRole> roles;
 
     @OneToMany(mappedBy = "user")
     private List<UserOrder> userOrderList;
@@ -50,16 +45,7 @@ public class User {
                 ", surname='" + surname + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
-                ", roles=" + roles +
                 '}';
-    }
-
-    public List<UserRole> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(List<UserRole> roles) {
-        this.roles = roles;
     }
 
     public Long getId() {

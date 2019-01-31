@@ -28,4 +28,5 @@ public class UserOrder extends Order {
     public void setUser(User user) {
         this.user = user;
     }
+
 }
