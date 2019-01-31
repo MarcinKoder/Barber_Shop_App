@@ -1,3 +1,4 @@
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%--
   Created by IntelliJ IDEA.
   User: XxX
@@ -8,9 +9,64 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>$Title$</title>
+    <style>
+        .tablediv{
+            background-color: rgba(202, 202, 202, 0.9);
+            border-radius: 10px
+        }
+    </style>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <title>Rezerwacja</title>
 </head>
 <body>
-$END$
+<jsp:include page="home.jsp"/>
+<div class="container">
+    <div class="tablediv" align="center">
+        <form:form modelAttribute="userOrder" method="post">
+            <div class="form-group">
+                <label for="formGroupExampleInput">
+                    Imię : <form:input readonly="true" path="user.name" class="form-control"
+                                       id="formGroupExampleInput"/><form:errors path="user.name"/>
+                </label>
+            </div>
+            <div class="form-group">
+                <label for="formGroupExampleInput">
+                    Nazwisko: <form:input readonly="true" path="user.surname" class="form-control"
+                                          id="formGroupExampleInput"/><form:errors path="user.surname"/>
+                </label>
+            </div>
+            <div class="form-group">
+                <label for="formGroupExampleInput">
+                    Email: <form:input readonly="true" path="user.email" class="form-control"
+                                       id="formGroupExampleInput"/><form:errors path="user.email"/>
+                </label>
+            </div>
+            <div class="form-group">
+                <label for="formGroupExampleInput">
+                    Usługa: <form:select path="service"
+                                          items="${services}"
+                                          itemLabel="name"
+                                          itemValue="id"
+                                          class="custom-select mr-sm-2"
+                                          id="inlineFormCustomSelect"/><form:errors path="service"/>
+                </label>
+            </div>
+            <div class="form-group">
+                <label for="formGroupExampleInput">
+                    Godzina: <form:select path="dateOfOrderContract"
+                                          items="${listOfVisitHours}"
+                                          itemLabel="desc"
+                                          itemValue="dateOfOrderContract"
+                                          class="custom-select mr-sm-2"
+                                          id="inlineFormCustomSelect"/><form:errors
+                        path="dateOfOrderContract"/>
+                </label>
+            </div>
+            <p><input type="submit" class="btn btn-primary btn-sm" value="Zatwierdź"/></p>
+        </form:form>
+    </div>
+</div>
 </body>
 </html>

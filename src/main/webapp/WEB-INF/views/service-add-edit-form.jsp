@@ -5,6 +5,7 @@
     <title>Add Service</title>
 </head>
 <body>
+<jsp:include page="home.jsp"/>
 <div>
     <form:form modelAttribute="service" method="post">
         <p>Nazwa usługi: <form:input path="name"/><form:errors path="name"/></p>

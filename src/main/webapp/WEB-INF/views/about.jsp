@@ -8,9 +8,20 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>$Title$</title>
+    <style>
+        .tablediv{
+            background-color: rgba(202, 202, 202, 0.9);
+            border-radius: 10px
+        }
+    </style>
+    <title>O nas</title>
 </head>
 <body>
-$END$
+<jsp:include page="home.jsp"/>
+<div class="container tablediv" align="center">
+    Jesteśmy firmą powstałą w styczniu 2019 roku, która w przyjaznej atmosferze<br/>
+    stara się spełnić oczekiwania naszych klientów. Składowymi są nie tylko wspaniale urządzona siedziba oraz sprzęt, <br/>
+    ale również dobrze wykwalifikowany zespół fryzjerski.
+</div>
 </body>
 </html>
