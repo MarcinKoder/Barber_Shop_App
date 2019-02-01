@@ -17,7 +17,7 @@
 </head>
 <body>
 <jsp:include page="home.jsp"/>
-<div class="container">
+<div class="container" align="center">
     <div align="center">
         <div>
             <table class="tablediv" cellpadding="30px" cellspacing="30px">
@@ -48,6 +48,8 @@
                             <h3 class="text">Jeśli nie masz konta</h3><br/>
                             <a href="/register" type="button" class="btn btn-primary btn-sm">Zarejetruj się</a>
                         </div>
+                    </td>
+                </tr>
             </table>
         </div>
     </div>

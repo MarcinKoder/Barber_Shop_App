@@ -15,6 +15,9 @@
             background-color: rgba(202, 202, 202, 0.9);
             border-radius: 10px
         }
+        .pln:after{
+            content: "PLN";
+        }
     </style>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -44,7 +47,7 @@
                 <td>${stat.index + 1}</td>
                 <td>${service.name}</td>
                 <td>${service.description}</td>
-                <td>${service.price}</td>
+                <td class="pln">${service.price}</td>
                 <sec:authorize access="hasRole('ROLE_ADMIN')">
                 <td><a href="/admin/services/update/${service.id}">Update</a></td>
                 <td><a href="/admin/services/delete/${service.id}">Delete</a></td>

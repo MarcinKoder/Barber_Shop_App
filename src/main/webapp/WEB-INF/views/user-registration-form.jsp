@@ -33,7 +33,7 @@
                                                   id="formGroupExampleInput"/><form:errors path="name"/>
                             </label>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" style="padding: 30px">
                             <label for="formGroupExampleInput">
                                 Nazwisko: <form:input path="surname" required="true" type="text" class="form-control"
                                                       id="formGroupExampleInput"/><form:errors path="surname"/>

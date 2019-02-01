@@ -47,7 +47,7 @@ public class ServiceController {
         if (service.getId() == null) {
             serviceRepository.save(service);
         }
-        return "redirect:/admin/services";
+        return "redirect:/allservices";
     }
 
     @GetMapping("/admin/services/update/{id:[1-9][0-9]*}")
@@ -68,15 +68,15 @@ public class ServiceController {
         if (service.getId() != null) {
             serviceRepository.save(service);
         }
-        return "redirect:/admin/services";
+        return "redirect:/allservices";
     }
 
-    @GetMapping("/delete/{id:[1-9][0-9]*}")
+    @GetMapping("/admin/services/delete/{id:[1-9][0-9]*}")
     public String deleteService(@PathVariable Long id) {
         Service service= serviceRepository.findById(id).get();
         if (service.getId() != null){
             serviceRepository.delete(service);
         }
-        return "redirect:/admin/services";
+        return "redirect:/allservices";
     }
 }

@@ -3,16 +3,48 @@
 <html>
 <head>
     <title>Add Service</title>
+    <style>
+        .tablediv{
+            background-color: rgba(202, 202, 202, 0.81);
+            border-radius: 20px;
+            background-size: 50px 50px;
+        }
+    </style>
 </head>
 <body>
 <jsp:include page="home.jsp"/>
-<div>
+<div class="container">
+    <div align="center">
+        <div class="tablediv">
+            <table>
+                <tr>
+                    <td class="col-sm-6" style="padding: 120px">
     <form:form modelAttribute="service" method="post">
-        <p>Nazwa usługi: <form:input path="name"/><form:errors path="name"/></p>
-        <p>Opis : <form:textarea path="description"/><form:errors path="description"/></p>
-        <p>Cena usługi: <form:input path="price" type="currency"/><form:errors path="price"/></p>
+        <div class="form-group">
+            <label for="formGroupExampleInput">
+        Nazwa usługi: <form:input path="name" class="form-control"
+                                     id="formGroupExampleInput"/><form:errors path="name"/>
+            </label>
+        </div>
+        <div class="form-group">
+            <label for="formGroupExampleInput">
+        Opis : <form:textarea path="description" class="form-control"
+                                 id="formGroupExampleInput"/><form:errors path="description"/>
+            </label>
+        </div>
+        <div class="form-group">
+            <label for="formGroupExampleInput">
+        Cena usługi: <form:input path="price" type="currency" class="form-control"
+                                    id="formGroupExampleInput"/><form:errors path="price"/>
+            </label>
+        </div>
         <p><input type="submit" value="Zapisz"/><input type="reset" value="Wyczyść"></p>
     </form:form>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
 </div>
 </body>
 </html>

@@ -34,7 +34,9 @@
             <sec:authorize access="isAuthenticated()">
             <ul class="nav navbar-nav">
                 <li class="active"><a href="/home">Home</a></li>
+                <sec:authorize access="!hasRole('ROLE_ADMIN')">
                 <li class="active"><a href="/user/order/add">Rezerwacja</a></li>
+                </sec:authorize>
                 <li class="active"><a href="/allservices">Cennik</a></li>
                 <li class="active"><a href="/contact">Kontakt</a></li>
                 <li class="active"><a href="/about">O nas</a></li>
