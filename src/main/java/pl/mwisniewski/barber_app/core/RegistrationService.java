@@ -33,7 +33,7 @@ public class RegistrationService {
 
         UserRole userRole = new UserRole();
         userRole.setUser(user);
-        userRole.setRole("ROLE_ADMIN");
+        userRole.setRole("ROLE_USER");
         userRoleRepository.save(userRole);
         return true;
     }

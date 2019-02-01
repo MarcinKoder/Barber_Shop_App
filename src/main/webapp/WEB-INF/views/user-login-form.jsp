@@ -9,6 +9,9 @@
             background-color: rgba(202, 202, 202, 0.9);
             border-radius: 10px
         }
+        td{
+            padding: 40px;
+        }
     </style>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -24,7 +27,6 @@
                 <tr>
                     <td align="center">
                         <h3 class="text">Zaloguj się</h3>
-                        <div class="text tablediv">
                             <form:form modelAttribute="userDto" method="post" action="/login">
                                 <div class="form-group">
                                     <label for="formGroupExampleInput">
@@ -41,7 +43,6 @@
                                 </div>
                                 <p><input type="submit" class="btn btn-primary btn-sm" value="Zaloguj"></p>
                             </form:form>
-                        </div>
                         <hr class="line" style="height:50px; color: rgba(0,0,0,0.87)">
                         <br/>
                         <div>
