@@ -1,12 +1,11 @@
 package pl.mwisniewski.barber_app.web.controllers;
 
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.*;
 import pl.mwisniewski.barber_app.dto.OrderDateDTO;
 import pl.mwisniewski.barber_app.dto.UserDto;
 import pl.mwisniewski.barber_app.model.User;
@@ -18,7 +17,10 @@ import pl.mwisniewski.barber_app.repositories.UserRepository;
 
 import javax.validation.Valid;
 import java.security.Principal;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,18 +45,28 @@ public class UserOrderController {
 
     @GetMapping("/order/add")
     public String prepareUserOrderForm(Model model, Principal principal) {
-        List<OrderDateDTO> dateTimeList = new ArrayList<>();
-        LocalDateTime start = LocalDateTime.of(LocalDateTime.now().getYear(), LocalDateTime.now().getMonth(), LocalDateTime.now().getDayOfMonth(), 8, 00);
-        for (int i = 0; i < 20; i++) {
-            OrderDateDTO orderDateDTO = new OrderDateDTO();
-            orderDateDTO.setDateOfOrderContract(start.plusMinutes(30 * i));
-            dateTimeList.add(orderDateDTO);
-        }
+//        List<OrderDateDTO> dateTimeList = new ArrayList<>();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
+        LocalDateTime now = LocalDateTime.now().truncatedTo(ChronoUnit.DAYS).plusDays(1);
+        LocalDateTime max = now.plusDays(14);
+//        LocalDateTime start = LocalDateTime.of(LocalDateTime.now().getYear(), LocalDateTime.now().getMonth(), LocalDateTime.now().getDayOfMonth(), 8, 00);
+//        for (int i = 0; i < 20; i++) {
+//            OrderDateDTO orderDateDTO = new OrderDateDTO();
+//            orderDateDTO.setDateOfOrderContract(start.plusMinutes(30 * i));
+//            dateTimeList.add(orderDateDTO);
+//        }
         UserOrder userOrder = new UserOrder();
         userOrder.setUser(userRepository.findByEmail(principal.getName()));
-        model.addAttribute("listOfVisitHours", dateTimeList);
+        model.addAttribute("now", now.format(formatter));
+        model.addAttribute("max", max.format(formatter));
+//        model.addAttribute("listOfVisitHours", dateTimeList);
         model.addAttribute("userOrder", userOrder);
         return "user-order-form";
+    }
+    @InitBinder
+    public void initBinder(WebDataBinder binder){
+        binder.registerCustomEditor(LocalDateTime.class,
+                new CustomDateEditor(new SimpleDateFormat("yyyy-MM-dd'T'HH:mm"), false, 16));
     }
 
     @PostMapping("/order/add")

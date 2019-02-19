@@ -1,5 +1,7 @@
 package pl.mwisniewski.barber_app.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Objects;
@@ -23,6 +25,7 @@ public abstract class Order {
     @Column(name = "order_acceptance")
     public LocalDateTime dateOfOrderAcceptance;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     @Column(name = "order_contract")
     public LocalDateTime dateOfOrderContract;
 

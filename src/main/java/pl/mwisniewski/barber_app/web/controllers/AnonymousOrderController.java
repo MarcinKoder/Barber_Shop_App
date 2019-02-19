@@ -3,10 +3,7 @@ package pl.mwisniewski.barber_app.web.controllers;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import pl.mwisniewski.barber_app.dto.OrderDateDTO;
 import pl.mwisniewski.barber_app.dto.RegistrationFormDTO;
 import pl.mwisniewski.barber_app.model.AnonymousOrder;
@@ -22,7 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-@RequestMapping("/order")
+@RequestMapping
 public class AnonymousOrderController {
 
     private ServiceRepository serviceRepository;
@@ -39,7 +36,19 @@ public class AnonymousOrderController {
     @ModelAttribute("services")
     public List<Service> services(){ return serviceRepository.findAll();}
 
-    @GetMapping("/add")
+
+
+//    @ModelAttribute("service")
+//    public Service service(@PathVariable Long id){
+//        return  serviceRepository.findById(id).get();
+//    }
+
+    @GetMapping("/admin/order/all")
+    public String allAnonymousOrders(){
+        return "anonymous-order-all";
+    }
+
+    @GetMapping("/order/add")
     public String prepareAnonymousOrderForm(Model model) {
         List<OrderDateDTO> dateTimeList = new ArrayList<>();
         LocalDateTime start = LocalDateTime.of(LocalDateTime.now().getYear(),LocalDateTime.now().getMonth(),LocalDateTime.now().getDayOfMonth(),8,00);
@@ -53,7 +62,7 @@ public class AnonymousOrderController {
         return "anonymous-order-form";
     }
 
-    @PostMapping("/add")
+    @PostMapping("/order/add")
     public String saveAnonymousOrder(@Valid AnonymousOrder anonymousOrder, BindingResult result) {
         if (result.hasErrors()) {
             return "anonymous-order-form";

@@ -58,15 +58,22 @@
                             </label>
                         </div>
                         <div class="form-group">
-                            <label for="formGroupExampleInput">
-                                Godzina: <form:select path="dateOfOrderContract"
-                                                      items="${listOfVisitHours}"
-                                                      itemLabel="desc"
-                                                      itemValue="dateOfOrderContract"
-                                                      class="custom-select mr-sm-2"
-                                                      id="inlineFormCustomSelect"/><form:errors
-                                    path="dateOfOrderContract"/>
+                            <label for="formGroupExampleInput">Wybierz datę i godzinę:
+                                <form:input id="party"
+                                            path="dateOfOrderContract"
+                                            type="datetime-local"
+                                            step="1800"
+                                            min="${now}"
+                                            max="${max}"
+                                            required="true"
+                                />
+                                <span class="validity"></span>
                             </label>
+                                <%--items="${listOfVisitHours}"--%>
+                                <%--itemLabel="desc"--%>
+                                <%--itemValue="dateOfOrderContract"--%>
+                                <%--class="custom-select mr-sm-2"--%>
+                                <%--id="inlineFormCustomSelect"/>--%>
                         </div>
                         <p><input type="submit" class="btn btn-primary btn-sm" value="Zatwierdź"/></p>
                     </form:form>

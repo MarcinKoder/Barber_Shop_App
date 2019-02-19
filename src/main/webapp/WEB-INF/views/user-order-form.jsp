@@ -1,4 +1,5 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%--
   Created by IntelliJ IDEA.
   User: XxX
@@ -10,7 +11,17 @@
 <html>
 <head>
     <style>
-        .tablediv{
+        input:invalid + span:after {
+            content: '✖';
+            padding-left: 5px;
+        }
+
+        input:valid + span:after {
+            content: '✓';
+            padding-left: 5px;
+        }
+
+        .tablediv {
             background-color: rgba(202, 202, 202, 0.9);
             border-radius: 10px
         }
@@ -46,23 +57,30 @@
             <div class="form-group">
                 <label for="formGroupExampleInput">
                     Usługa: <form:select path="service"
-                                          items="${services}"
-                                          itemLabel="name"
-                                          itemValue="id"
-                                          class="custom-select mr-sm-2"
-                                          id="inlineFormCustomSelect"/><form:errors path="service"/>
+                                         items="${services}"
+                                         itemLabel="name"
+                                         itemValue="id"
+                                         class="custom-select mr-sm-2"
+                                         id="inlineFormCustomSelect"/><form:errors path="service"/>
                 </label>
             </div>
             <div class="form-group">
-                <label for="formGroupExampleInput">
-                    Godzina: <form:select path="dateOfOrderContract"
-                                          items="${listOfVisitHours}"
-                                          itemLabel="desc"
-                                          itemValue="dateOfOrderContract"
-                                          class="custom-select mr-sm-2"
-                                          id="inlineFormCustomSelect"/><form:errors
-                        path="dateOfOrderContract"/>
+                <label for="formGroupExampleInput">Wybierz datę i godzinę:
+                <form:input id="party"
+                            path="dateOfOrderContract"
+                            type="datetime-local"
+                            step="1800"
+                            min="${now}"
+                            max="${max}"
+                            required="true"
+                />
+                <span class="validity"></span>
                 </label>
+                    <%--items="${listOfVisitHours}"--%>
+                    <%--itemLabel="desc"--%>
+                    <%--itemValue="dateOfOrderContract"--%>
+                    <%--class="custom-select mr-sm-2"--%>
+                    <%--id="inlineFormCustomSelect"/>--%>
             </div>
             <p><input type="submit" class="btn btn-primary btn-sm" value="Zatwierdź"/></p>
         </form:form>
