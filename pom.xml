@@ -11,7 +11,7 @@
 	<groupId>pl.mwisniewski</groupId>
 	<artifactId>barber_app</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>barber_app</name>
+	<name>barber</name>
 	<description>Demo project for Spring Boot</description>
 
 	<properties>
